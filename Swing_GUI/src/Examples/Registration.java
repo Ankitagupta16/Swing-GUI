@@ -1,6 +1,8 @@
 package Examples;
 
-import javax.swing.*; 
+import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import java.awt.*; 
 import java.awt.event.*; 
   
@@ -15,8 +17,6 @@ class MyFrame
 	// Components of the Form 
     private Container c; 
     private JLabel title; 
-    private JLabel name; 
-    private JTextField tname; 
     private JLabel mno; 
     private JTextField tmno; 
     private JLabel gender; 
@@ -24,17 +24,16 @@ class MyFrame
     private JRadioButton female; 
     private ButtonGroup gengp; 
     private JLabel dob; 
-    private JComboBox date; 
-    private JComboBox month; 
-    private JComboBox year; 
+    private JComboBox<?> date; 
+    private JComboBox<?> month; 
+    private JComboBox<?> year; 
     private JLabel add; 
     private JTextArea tadd; 
     private JCheckBox term; 
     private JButton sub; 
     private JButton reset; 
     private JTextArea tout; 
-    private JLabel res; 
-    private JTextArea resadd; 
+    private JLabel res;  
   
     private String dates[] 
         = { "1", "2", "3", "4", "5", 
@@ -55,13 +54,17 @@ class MyFrame
             "2007", "2008", "2009", "2010", 
             "2011", "2012", "2013", "2014", 
             "2015", "2016", "2017", "2018", 
-            "2019" }; 
+            "2019" };
+	private JTextField tfirstname;
+	private JLabel firstname;
+	private JLabel lastname;
+	private JTextField tlastname; 
   
     
     public MyFrame() 
     { 
         setTitle("Registration"); 
-        setBounds(300, 90, 900, 600); 
+        setBounds(300, 90, 900, 650); 
         setDefaultCloseOperation(EXIT_ON_CLOSE); 
         setResizable(false); 
   
@@ -74,48 +77,60 @@ class MyFrame
         title.setLocation(300, 30); 
         c.add(title); 
   
-        name = new JLabel("Name"); 
-        name.setFont(new Font("Arial", Font.PLAIN, 20)); 
-        name.setSize(100, 20); 
-        name.setLocation(100, 100); 
-        c.add(name); 
+        firstname = new JLabel("First Name"); 
+        firstname.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        firstname.setSize(100, 20); 
+        firstname.setLocation(100, 100); 
+        c.add(firstname); 
   
-        tname = new JTextField(); 
-        tname.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        tname.setSize(190, 20); 
-        tname.setLocation(200, 100); 
-        c.add(tname); 
+        tfirstname = new JTextField(); 
+        tfirstname.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        tfirstname.setSize(190, 30); 
+        tfirstname.setLocation(200, 100); 
+        c.add(tfirstname); 
+        
+        lastname = new JLabel("Last Name"); 
+        lastname.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        lastname.setSize(100, 20); 
+        lastname.setLocation(100, 150); 
+        c.add(lastname); 
+  
+        tlastname = new JTextField(); 
+        tlastname.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        tlastname.setSize(190, 30); 
+        tlastname.setLocation(200, 150); 
+        c.add(tlastname); 
   
         mno = new JLabel("Mobile"); 
         mno.setFont(new Font("Arial", Font.PLAIN, 20)); 
         mno.setSize(100, 20); 
-        mno.setLocation(100, 150); 
+        mno.setLocation(100, 200); 
         c.add(mno); 
   
         tmno = new JTextField(); 
         tmno.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        tmno.setSize(150, 20); 
-        tmno.setLocation(200, 150); 
+        tmno.setSize(150, 30); 
+        tmno.setLocation(200, 200); 
         c.add(tmno); 
   
         gender = new JLabel("Gender"); 
         gender.setFont(new Font("Arial", Font.PLAIN, 20)); 
         gender.setSize(100, 20); 
-        gender.setLocation(100, 200); 
+        gender.setLocation(100, 250); 
         c.add(gender); 
   
         male = new JRadioButton("Male"); 
         male.setFont(new Font("Arial", Font.PLAIN, 15)); 
         male.setSelected(true); 
         male.setSize(75, 20); 
-        male.setLocation(200, 200); 
+        male.setLocation(200, 250); 
         c.add(male); 
   
         female = new JRadioButton("Female"); 
         female.setFont(new Font("Arial", Font.PLAIN, 15)); 
         female.setSelected(false); 
         female.setSize(80, 20); 
-        female.setLocation(275, 200); 
+        female.setLocation(275, 250); 
         c.add(female); 
   
         gengp = new ButtonGroup(); 
@@ -125,57 +140,57 @@ class MyFrame
         dob = new JLabel("DOB"); 
         dob.setFont(new Font("Arial", Font.PLAIN, 20)); 
         dob.setSize(100, 20); 
-        dob.setLocation(100, 250); 
+        dob.setLocation(100, 300); 
         c.add(dob); 
   
-        date = new JComboBox(dates); 
+        date = new JComboBox<>(dates); 
         date.setFont(new Font("Arial", Font.PLAIN, 15)); 
         date.setSize(50, 20); 
-        date.setLocation(200, 250); 
+        date.setLocation(200, 300); 
         c.add(date); 
   
-        month = new JComboBox(months); 
+        month = new JComboBox<>(months); 
         month.setFont(new Font("Arial", Font.PLAIN, 15)); 
         month.setSize(60, 20); 
-        month.setLocation(250, 250); 
+        month.setLocation(250, 300); 
         c.add(month); 
   
-        year = new JComboBox(years); 
+        year = new JComboBox<>(years); 
         year.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        year.setSize(60, 20); 
-        year.setLocation(320, 250); 
+        year.setSize(70, 20); 
+        year.setLocation(320, 300); 
         c.add(year); 
   
         add = new JLabel("Address"); 
         add.setFont(new Font("Arial", Font.PLAIN, 20)); 
         add.setSize(100, 20); 
-        add.setLocation(100, 300); 
+        add.setLocation(100, 350); 
         c.add(add); 
   
         tadd = new JTextArea(); 
         tadd.setFont(new Font("Arial", Font.PLAIN, 15)); 
         tadd.setSize(200, 75); 
-        tadd.setLocation(200, 300); 
+        tadd.setLocation(200, 350); 
         tadd.setLineWrap(true); 
         c.add(tadd); 
   
         term = new JCheckBox("Accept Terms And Conditions."); 
         term.setFont(new Font("Arial", Font.PLAIN, 15)); 
         term.setSize(250, 20); 
-        term.setLocation(150, 400); 
+        term.setLocation(150, 450); 
         c.add(term); 
   
         sub = new JButton("Submit"); 
         sub.setFont(new Font("Arial", Font.PLAIN, 15)); 
         sub.setSize(100, 20); 
-        sub.setLocation(150, 450); 
+        sub.setLocation(150, 500); 
         sub.addActionListener(this); 
         c.add(sub); 
   
         reset = new JButton("Reset"); 
         reset.setFont(new Font("Arial", Font.PLAIN, 15)); 
         reset.setSize(100, 20); 
-        reset.setLocation(270, 450); 
+        reset.setLocation(270, 500); 
         reset.addActionListener(this); 
         c.add(reset); 
   
@@ -185,58 +200,54 @@ class MyFrame
         tout.setLocation(500, 100); 
         tout.setLineWrap(true); 
         tout.setEditable(false); 
+        tout.setBorder(BorderFactory.createCompoundBorder(tout.getBorder(),  BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         c.add(tout); 
   
         res = new JLabel(""); 
         res.setFont(new Font("Arial", Font.PLAIN, 20)); 
         res.setSize(500, 25); 
-        res.setLocation(100, 500); 
+        res.setLocation(100, 550); 
         c.add(res); 
   
-        resadd = new JTextArea(); 
-        resadd.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        resadd.setSize(200, 75); 
-        resadd.setLocation(580, 175); 
-        resadd.setLineWrap(true); 
-        c.add(resadd); 
+        
   
         setVisible(true); 
     } 
   
     // method actionPerformed() 
-    // to get the action performed 
-    // by the user and act accordingly 
     public void actionPerformed(ActionEvent e) 
     { 
         if (e.getSource() == sub) { 
             if (term.isSelected()) { 
+            	String head="______Your Registration details______\n \n \n";
                 String data1; 
                 String data 
-                    = "Name : "
-                      + tname.getText() + "\n"
+                    = "First Name : "
+                      + tfirstname.getText() + "\n"+ "\n"
+                      +"Last Name : "
+                      + tlastname.getText() + "\n"+ "\n"
                       + "Mobile : "
-                      + tmno.getText() + "\n"; 
+                      + tmno.getText() + "\n"+ "\n"; 
                 if (male.isSelected()) 
                     data1 = "Gender : Male"
-                            + "\n"; 
+                            + "\n"+ "\n"; 
                 else
                     data1 = "Gender : Female"
-                            + "\n"; 
+                            + "\n"+ "\n"; 
                 String data2 
                     = "DOB : "
                       + (String)date.getSelectedItem() 
                       + "/" + (String)month.getSelectedItem() 
                       + "/" + (String)year.getSelectedItem() 
-                      + "\n"; 
+                      + "\n"+ "\n"; 
   
                 String data3 = "Address : " + tadd.getText(); 
-                tout.setText(data + data1 + data2 + data3); 
+                tout.setText(head+data + data1 + data2 + data3); 
                 tout.setEditable(false); 
-                res.setText("Registration Successfully.."); 
+                res.setText("Registration Successful.."); 
             } 
             else { 
                 tout.setText(""); 
-                resadd.setText(""); 
                 res.setText("Please accept the"
                             + " terms & conditions.."); 
             } 
@@ -244,7 +255,8 @@ class MyFrame
   
         else if (e.getSource() == reset) { 
             String def = ""; 
-            tname.setText(def); 
+            tfirstname.setText(def);
+            tlastname.setText(def);
             tadd.setText(def); 
             tmno.setText(def); 
             res.setText(def); 
@@ -253,7 +265,6 @@ class MyFrame
             date.setSelectedIndex(0); 
             month.setSelectedIndex(0); 
             year.setSelectedIndex(0); 
-            resadd.setText(def); 
         } 
     } 
 } 
@@ -261,8 +272,19 @@ class MyFrame
 // Driver Code 
 class Registration { 
   
+	
     public static void main(String[] args) throws Exception 
     { 
-        MyFrame f = new MyFrame(); 
+    	try{
+    		for(LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()){
+    			if("Nimbus".equals(info.getName())){
+    				UIManager.setLookAndFeel(info.getClassName());
+    				break;
+    			}
+    		}
+    	}
+    	catch(Exception e){
+    		}
+      new MyFrame(); 
     } 
 } 
