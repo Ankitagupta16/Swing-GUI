@@ -7,4 +7,7 @@ An app that counts total number of characters and words.<br>
 <a href="https://github.com/Ankitagupta16/Swing-GUI/blob/master/Swing_GUI/src/Examples/editor.java">
 2.Text Editor:</a>&nbsp;
 A text editor app having FileMenu, EditMenu and Close.<br>
-
+<a href="https://github.com/Ankitagupta16/Swing-GUI/blob/master/Swing_GUI/src/Examples/Registration.java">
+3.Registration Form:</a>&nbsp;
+A Simple Registration Form.<br>
+ 
